@@ -34,7 +34,7 @@ saved_model_path = './checkpoints/comment_classify/sentence_transformer/model_be
 tokenizer = AutoTokenizer.from_pretrained(saved_model_path) 
 model = torch.load(os.path.join(saved_model_path, 'model.pt'))
 model.to(device).eval()
-type_desc_dict = json.load(open('embeddings/comment_classify/sentence_transformer_type_embeddings.json', 'r', encoding='utf8'))
+# type_desc_dict = json.load(open('embeddings/comment_classify/sentence_transformer_type_embeddings.json', 'r', encoding='utf8'))
 
 
 def inference(desc: str):

@@ -76,9 +76,9 @@ def inference(
 
 
 if __name__ == '__main__':
-    device = 'cuda:1'
-    tokenizer = AutoTokenizer.from_pretrained('./checkpoints/LCQMC/model_2000')
-    model = torch.load('./checkpoints/LCQMC/model_2000/model.pt')
+    device = 'cuda:0'
+    tokenizer = AutoTokenizer.from_pretrained('./checkpoints/LCQMC/model_best')
+    model = torch.load('./checkpoints/LCQMC/model_best/model.pt')
     model.to(device).eval()
 
     sentence_pair = [

@@ -261,7 +261,10 @@ if __name__ == "__main__":
     model.to(device).eval()
 
     sentences = [
-        '谭孝曾是谭元寿的长子，也是谭派第六代传人。'
+        # '谭孝曾是谭元寿的长子，也是谭派第六代传人。'
+        "[EaseMoni ] Congratulations! Your loan has been approved, your bank account has arrived in NGN [3000.0], the repayment amount is NGN [4800.0] , and the due date is [23/08/2021].",
+        "[Rapidnero] Su pago se vencio . Pague ahora para evitar mas cargos. por favor haga su pago con este enlace https://bit.ly/3Dy9Znt",
+
     ]
     
     # NER 示例
@@ -271,17 +274,17 @@ if __name__ == "__main__":
             tokenizer,
             device,
             sentence=sentence, 
-            schema=['人物']
+            schema=['金额']
         )
 
     # SPO抽取示例
-    for sentence in sentences:
-        information_extract_example(
-            model,
-            tokenizer,
-            device,
-            sentence=sentence, 
-            schema={
-                    '人物': ['父亲'],
-                }
-        )
+    # for sentence in sentences:
+    #     information_extract_example(
+    #         model,
+    #         tokenizer,
+    #         device,
+    #         sentence=sentence,
+    #         schema={
+    #                 '人物': ['父亲'],
+    #             }
+    #     )

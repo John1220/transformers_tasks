@@ -32,7 +32,7 @@ from verbalizer import Verbalizer
 from Template import HardTemplate
 from utils import convert_example, convert_logits_to_ids
 
-device = 'cuda:1'
+device = 'cuda:0'
 model_path = 'checkpoints/comment_classify/model_best'
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForMaskedLM.from_pretrained(model_path)

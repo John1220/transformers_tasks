@@ -128,7 +128,7 @@ class iSummaryWriter(object):
             param_row, param_column = param_index // self.max_columns, param_index % self.max_columns
             ax = self.axes[param_row, param_column] if self.max_param_index > 0 else self.axes
             # ax.set_title(param)
-            ax.set_xlabel('Epoch')
+            ax.set_xlabel('Step')
             ax.set_ylabel(param)
             ax.plot(self.params_dict[param]['epochs'],
                     self.params_dict[param]['values'],

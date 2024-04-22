@@ -68,15 +68,14 @@ def inference(
 
 if __name__ == '__main__':
     device = 'cuda:0'                                                  # 指定GPU设备
-    saved_model_path = 'checkpoints/comment_classify/model_best'       # 训练模型存放地址
+    saved_model_path = 'checkpoints/94ai/model_best'       # 训练模型存放地址
     tokenizer = AutoTokenizer.from_pretrained(saved_model_path) 
     model = AutoModelForSequenceClassification.from_pretrained(saved_model_path) 
     model.to(device).eval()
 
     sentences = [
-        '外表跟图片不太像，而且号码偏大一些，穿着宽松而且裤腿不是很长，除了穿着暖和外还凑合吧，可能我个人试着不太合适',
-        '不好看，不值这个价钱',
-        '房间超级小，根本就不值688元的价格，特别是在广州这样一个酒店业十分发达的城市，酒店服务差，入住登记时强调要安静的房间。',
+        '[0:43.320,0:45.490]  哦，好的好的，可以可以好。',
+        '喂，你好，我这边是分期乐的客户经理啊，啊，就您之前是有在我们平台有借过款的，您这边手机上是还有分期乐APP吗',
     ]
     res = inference(model, tokenizer, sentences, device)
     print('res: ', res)

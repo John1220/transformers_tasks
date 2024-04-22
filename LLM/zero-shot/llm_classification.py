@@ -20,6 +20,8 @@
 Author: pankeyu
 Date: 2023/03/17
 """
+import time
+
 from rich import print
 from rich.console import Console
 from transformers import AutoTokenizer, AutoModel
@@ -68,7 +70,10 @@ def inference(
     for sentence in sentences:
         with console.status("[bold bright_green] Model Inference..."):
             sentence_with_prompt = f"“{sentence}”是 {custom_settings['class_list']} 里的什么类别？"
+            s = time.time()
             response, history = model.chat(tokenizer, sentence_with_prompt, history=custom_settings['pre_history'])
+            print("time cost, ", time.time() - s)
+
         print(f'>>> [bold bright_red]sentence: {sentence}')
         print(f'>>> [bold bright_green]inference answer: {response}')
         # print(history)
@@ -78,8 +83,10 @@ if __name__ == '__main__':
     console = Console()
 
     device = 'cuda:0'
-    tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True)
-    model = AutoModel.from_pretrained("THUDM/chatglm-6b", trust_remote_code=True).half()
+    # tokenizer = AutoTokenizer.from_pretrained("/root/.cache/huggingface/hub/models--THUDM--chatglm-6b-int8/snapshots/22906aeb32fd7952ce323dc9d25e01693b270da6", trust_remote_code=True)
+    # model = AutoModel.from_pretrained("/root/.cache/huggingface/hub/models--THUDM--chatglm-6b-int8/snapshots/22906aeb32fd7952ce323dc9d25e01693b270da6", trust_remote_code=True).half()
+    tokenizer = AutoTokenizer.from_pretrained("THUDM/chatglm2-6b-int4", trust_remote_code=True)
+    model = AutoModel.from_pretrained("THUDM/chatglm2-6b-int4", trust_remote_code=True).half()
     model.to(device)
 
     sentences = [

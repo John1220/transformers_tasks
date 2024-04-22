@@ -33,8 +33,8 @@ saved_model_path = './checkpoints/comment_classify/dssm/model_best/'     # 训�
 tokenizer = AutoTokenizer.from_pretrained(saved_model_path) 
 model = torch.load(os.path.join(saved_model_path, 'model.pt'))
 model.to(device).eval()
-type_desc_dict = json.load(open('embeddings/comment_classify/dssm_type_embeddings.json', \
-                            'r', encoding='utf8'))                       # type embedding 存放路径
+# type_desc_dict = json.load(open('embeddings/comment_classify/dssm_type_embeddings.json', \
+#                             'r', encoding='utf8'))                       # type embedding 存放路径
 
 
 def inference(desc: str):
